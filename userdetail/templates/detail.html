@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="read">
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2>User <b>Details</b></h2>
+                        </div>
+                         
+                    </div>
+                </div>
+    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                   
+    <tbody>
+    
+        <form action="{% url 'detailuser' userprofile.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+     <tr>
+        <th>First Name</th>
+        <td>{{userprofile.firstname}}</td>
+        <th>Last Name</th>
+        <td> {{userprofile.lastname}} </td>
+      </tr>
+    
+      <tr>
+        <th>Email</th>
+        <td>{{ userprofile.email}}</td>
+        <th>Mobile Number</th>
+        <td>{{ userprofile.mobile}}</td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>{{userprofile.address}}</td>
+        <th>Creation Date</th>
+        <td>CreationDate</td>
+      </tr>
+      
+    </form>
+                     
+    </tbody>
+    </table>
+           
+            </div>
+        </div>
+    </div>     
+    </div>
+
+
+
+{% endblock content %}

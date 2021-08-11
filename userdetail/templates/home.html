@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h2>User <b>Management</b></h2>
+                    </div>
+                       <div class="col-sm-7" align='right'>
+                        <a href="{% url 'adduser' %}" class="btn btn-secondary"><i class="material-icons"></i> <span>Add New User</span></a>
+                                        
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>                       
+                        <th>Email</th>
+                        <th>Mobile Number</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+<!--Fetch the Records -->
+                    {% for userprofile in userdata %}
+                    <tr>
+                        <td>{{userprofile.id}}</td>
+                        <td>{{userprofile.firstname}} {{userprofile.lastname}} </td>
+                        <td>{{userprofile.email}}</td>                        
+                        <td>{{userprofile.mobile}}</td>
+                        <td>{{userprofile.address}}</td>
+
+                        <td>
+                            
+        <a href="{% url 'detailuser' userprofile.id %}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+
+        <a href="{%  url 'updateuser' userprofile.id %}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+        <a href="{% url 'deleteuser' userprofile.id %}" class="delete" title="Delete" data-toggle="tooltip" onclick="return confirm('Do you really want to Delete ?');"><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                   
+{% empty %}     
+<tr>
+    <th style="text-align:center; color:red;" colspan="6">No Record Found</th>
+</tr>  
+
+{% endfor %}               
+                </tbody>
+            </table>
+       
+        </div>
+    </div>
+</div>     
+
+{% endblock content %}
